@@ -1,16 +1,68 @@
-#header {
-	margin-top: 30px;
+@bgcolor:#8f1908;
+@font-color:#FCFCDF;
+
+html,body{
+  margin:0;
 }
 
-#footer {
-	margin-top: 30px;
-	border-top: 1px solid #eeeeee;
-	padding-top: 30px;
-	color: #777777;
+body{
+  font-size:14px;
 }
 
-.gallery-image img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+#header{
+  position: relative;
+  width: 100%;
+  background-color: @bgcolor;
+  height: 15em;
+}
+
+.header-mixin(@w){
+  display: inline-block;
+  float:left;
+  width: @w;
+  height: 15em;
+}
+
+.header-tuanhui{
+  .header-mixin(12.6%);
+  padding:1em;
+}
+
+.header-right{
+  .header-mixin(87.3%);
+  padding:1em;
+}
+
+.header-units{
+  position: relative;
+  top:.5em;
+  color: @font-color;
+  font-size:2.5em;
+  font-family: "Microsoft Yahei UI";
+  span{
+    margin:.5em 0 .5em 0;
+  }
+}
+
+.header-searchbar-container{
+  position: absolute;
+  display: inline-block;
+  color: #FFF;
+  bottom: 1em;
+  right: 2em;
+}
+
+#footer{
+  padding:0 0 .1em 0;
+  background-color: @bgcolor;
+  text-align: center;
+  color:@font-color;
+  font-size: .5em;
+  a{
+    text-decoration: none;
+    color: @font-color;
+    &:hover{
+      color:lightblue;
+    }
+  }
 }

@@ -25,6 +25,10 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 
+    'wysiwyg additional buttons': 'paste',
+    'wysiwyg additional plugins': 'paste',
+    'wysiwyg additional options':  {'paste_data_images':true}
+
 });
 
 // Load your project's Models
@@ -39,19 +43,18 @@ keystone.set('locals', {
 	_: require('underscore'),
 	env: keystone.get('env'),
 	utils: keystone.utils,
-	editable: keystone.content.editable,
+	editable: keystone.content.editable
 });
 
 // Load your project's Routes
 
 keystone.set('routes', require('./routes'));
 
-
-
 // Configure the navigation bar in Keystone's Admin UI
 
 keystone.set('nav', {
-	users: 'users',
+	posts:'posts',
+	users: 'users'
 });
 
 // Start Keystone to connect to your database and initialise the web server

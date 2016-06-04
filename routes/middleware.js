@@ -19,7 +19,13 @@ var _ = require('underscore');
 */
 exports.initLocals = function (req, res, next) {
 	res.locals.navLinks = [
-		{ label: 'Home', key: 'home', href: '/' },
+		{ label: '首页', key: 'home', href: '/' },
+		{ label: '整体概况', key: 'profile', href: '/' },
+		{ label: '组织架构', key: 'framework', href: '/' },
+		{ label: '新闻动态', key: 'newslist', href: '/newslist' },
+		{ label: '通知公告', key: 'noticelist', href: '/noticelist' },
+		{ label: '联系我们', key: 'contactus', href: '/' },
+		{ label: '友情链接', key: 'friendlinks', href: '/' }
 	];
 	res.locals.user = req.user;
 	next();
@@ -34,7 +40,7 @@ exports.flashMessages = function (req, res, next) {
 		info: req.flash('info'),
 		success: req.flash('success'),
 		warning: req.flash('warning'),
-		error: req.flash('error'),
+		error: req.flash('error')
 	};
 	res.locals.messages = _.any(flashMessages, function (msgs) { return msgs.length; }) ? flashMessages : false;
 	next();
