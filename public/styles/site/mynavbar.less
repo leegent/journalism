@@ -1,0 +1,42 @@
+@navbar-default-bg: #ececcf;
+@navbar-default-link-color: #736359;
+@navbar-default-link-hover-color: #bbb;
+@navbar-default-link-hover-bg:#ececcf;
+@navbar-default-link-active-color: #736359;
+@navbar-default-link-active-bg: #ececcf;
+
+.mynavbar {
+  background-color: @navbar-default-bg;
+  margin: 0;
+  padding: .5em 0;
+  font-size: 1.4em;
+  // Prevent floats from breaking the navbar
+  &:extend(.clearfix all);
+}
+
+.mynavbar-nav {
+  margin: 0 auto;
+  padding: 0;
+  font-family: "Microsoft Yahei UI";
+  text-align: center;
+  > a {
+    margin: 0 1.7em;
+    padding: 0;
+    text-decoration: none;
+    color: @navbar-default-link-color;
+    &:hover,
+    &:focus {
+      color: @navbar-default-link-hover-color;
+      background-color: @navbar-default-link-hover-bg;
+    }
+  }
+  > .active {
+    &,
+    &:hover,
+    &:focus {
+      font-weight: bolder;
+      color: @navbar-default-link-active-color;
+      background-color: @navbar-default-link-active-bg;
+    }
+  }
+}
