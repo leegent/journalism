@@ -1,4 +1,4 @@
-@bgcolor:#8f1908;
+@nav-bgcolor:#8f1908;
 @font-color:#FCFCDF;
 
 html,body{
@@ -7,40 +7,52 @@ html,body{
 
 body{
   font-size:14px;
+  background-color: lightgray;
+}
+
+#container{
+  width: 88em;
+  margin:0 10em;
+  padding:1em;
+  background-color: #fff;
 }
 
 #header{
   position: relative;
   width: 100%;
-  background-color: @bgcolor;
-  height: 15em;
+  height: 12em;
+  margin: 0;
+  background-color: @nav-bgcolor;
 }
 
 .header-mixin(@w){
+  box-sizing: border-box;
   display: inline-block;
   float:left;
   width: @w;
-  height: 15em;
+  height: 12em;
 }
 
 .header-tuanhui{
-  .header-mixin(12.6%);
+  .header-mixin(12em);
   padding:1em;
 }
 
 .header-right{
-  .header-mixin(87.3%);
-  padding:1em;
+  .header-mixin(70em);
+  padding-top: 1em;
 }
 
 .header-units{
   position: relative;
-  top:.5em;
   color: @font-color;
-  font-size:2.5em;
-  font-family: "Microsoft Yahei UI";
-  span{
-    margin:.5em 0 .5em 0;
+  font-family: "宋体";
+  p{
+    margin: 0 0 .5em 0;
+    font-size:2em;
+    &:last-child{
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -50,15 +62,28 @@ body{
   color: #FFF;
   bottom: 1em;
   right: 2em;
+  > input{
+    color: #000;
+  }
+  > .btn{
+    padding: .3em .9em;
+    font-size: .9em;
+  }
 }
 
 #footer{
-  padding:0 0 .1em 0;
-  background-color: @bgcolor;
+  margin: 0;
+  padding:1em 0 .1em 0;
+  background-color: @nav-bgcolor;
   text-align: center;
   color:@font-color;
-  font-size: .5em;
+  font-size: 1.2em;
+  font-family: "黑体";
+  p{
+    margin: 0 0 .5em 0;
+  }
   a{
+    margin-left: 3em;
     text-decoration: none;
     color: @font-color;
     &:hover{

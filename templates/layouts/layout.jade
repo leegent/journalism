@@ -12,31 +12,32 @@ html
 		block head
 			
 	body
-		header#header
-			img(src="/images/tuanhui.png").header-tuanhui
-			div.header-right
-				div.header-units
-					span 共青团复旦大学新闻学院委员会
-					br
-					span 复旦大学新闻学院学生会
-					br
-					span 复旦大学新闻学院研究生会
-			div.header-searchbar-container 此处应有搜索条
-		nav(role="navigation").navbar.navbar-default
-			div.container-fluid
-				div.collapse.navbar-collapse
-					ul.nav.navbar-nav
-						each link in navLinks
-							li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-		main#main-container
-			block main
-				
-		footer#footer
-			p.footer-line1 all rights reserved&nbsp;复旦大学新闻学院版权所有&nbsp;由KeystoneJS提供技术支持
-			p.footer-line2 联系方式|&nbsp;021-65642222
-			p.footer-line3
-				a(href="#") 新闻学院官网&nbsp;
-				a(href="#") 新闻学院图书馆&nbsp;
-				a(href="#") 信息与传播研究中心&nbsp;
-				a(href="#") 新媒体研究网&nbsp;
-				a(href="#") 复新传媒
+		div#container
+			header#header
+				img(src="/images/ycl.png").header-tuanhui
+				div.header-right
+					div.header-units
+						p 共青团复旦大学新闻学院委员会
+						p 复旦大学新闻学院学生会
+						p 复旦大学新闻学院研究生会
+				div.header-searchbar-container
+					input(type="text" name="s" id="search" placeholder="站内搜索" value="")
+					button.btn.btn-primary
+						i.glyphicon.glyphicon-search
+			nav.mynavbar
+				div.mynavbar-nav
+					each link in navLinks
+						a(class=(section == link.key ? 'active' : null),href=link.href)= link.label
+			main#main-container
+				block main
+					
+			footer#footer
+				p.footer-line1 all rights reserved&nbsp;复旦大学新闻学院版权所有&nbsp;由KeystoneJS提供技术支持
+				p.footer-line2 联系方式| 021-65642222
+				p.footer-line3
+					a(href="#") 新闻学院官网&nbsp;
+					a(href="#") 新闻学院图书馆&nbsp;
+					a(href="#") 信息与传播研究中心&nbsp;
+					a(href="#") 新媒体研究网&nbsp;
+					a(href="#") 复新传媒
+		script(src="js/mysite.js")

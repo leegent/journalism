@@ -1,6 +1,46 @@
 extends ../layouts/layout
 
+mixin news(id,image,title)
+	div(data-id=id).news-container
+		img(src=image)
+		p.newsTile= title
+
+mixin newsSection(type)
+	div.news-section
+		div.post-title.news-section-header
+			if(type==='1')
+				| 团委
+			else if(type==='2')
+				| 学生会
+			else
+				| 研究生会
+		div.news-section-body
+			if(type==='1')
+				each item in data.ycl
+					+news(item._id,"images/"+item.image.filename,item.title)
+			else if(type==='2')
+				each item in data.collegeStu
+					+news(item._id,"images/"+item.image.filename,item.title)
+			else
+				each item in data.graduateStu
+					+news(item._id,"images/"+item.image.filename,item.title)
+
 block main
-	p 做一个微小的实验
-	p 做二个微小的实验
-	p 做三个微小的实验
+	section.carousel-container
+	section.posts
+		section.news
+			header.post-header.post-title 新闻
+			main.news-main
+				+newsSection('1')
+				+newsSection('2')
+				+newsSection('3')
+		section.notices
+			header.post-header.post-title 公告
+			main.notice-main
+				each item in data.notices
+					div.notice-title-container
+						div.notice-title-left
+							a(href='notices?id='+item._id) #{item.title}
+						div.notice-title-right
+							span= item._.publishedDate.format('YYYY-MM-DD')
+	
