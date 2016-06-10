@@ -1,5 +1,11 @@
 @nav-bgcolor:#8f1908;
 @font-color:#FCFCDF;
+.unselectable{
+  -webkit-user-select:none;
+  -ms-user-select:none;
+  -moz-user-select:none;
+  user-select:none;
+}
 
 html,body{
   margin:0;
@@ -10,9 +16,11 @@ body{
   background-color: lightgray;
 }
 
+@import "./mynavbar.less";
+
 #container{
   width: 88em;
-  margin:0 10em;
+  margin:0 auto;
   padding:1em;
   background-color: #fff;
 }
@@ -47,9 +55,11 @@ body{
   position: relative;
   color: @font-color;
   font-family: "宋体";
+  .unselectable;
   p{
     margin: 0 0 .5em 0;
     font-size:2em;
+    cursor: default;
     &:last-child{
       margin-bottom: 0;
     }

@@ -24,11 +24,10 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-
-    'wysiwyg additional buttons': 'paste',
-    'wysiwyg additional plugins': 'paste',
-    'wysiwyg additional options':  {'paste_data_images':true}
-
+	'wysiwyg images': true,
+  'wysiwyg additional buttons': 'paste',
+  'wysiwyg additional plugins': 'paste',
+  'wysiwyg additional options':  {'paste_data_images':true}
 });
 
 // Load your project's Models

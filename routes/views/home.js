@@ -5,11 +5,12 @@ exports = module.exports = function (req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 	// days of current month
-	var days = (()=>{
-		var y = Date.now.getFullYear();
+	var today = new Date();
+	var lastDay = (()=>{
+		var y = today.getFullYear();
 		var FebLastDay = ((y % 4 === 0 && y % 100 != 0) || y % 400 === 0)?29:28;
-		return [31,FebLastDay,31,30,31,30,31,31,30,31,30,31][Date.now().getMonth()];		
-	});
+		return [31,FebLastDay,31,30,31,30,31,31,30,31,30,31][today.getMonth()];	
+	})();	
 	// 首页需要从数据库获取的数据有：所有本月的“今日新院”，三类新闻的分别最新2个，以及最新的10条公告
 	locals.data={
 		todays:[],
@@ -17,7 +18,8 @@ exports = module.exports = function (req, res) {
 		collegeStu:[],
 		graduateStu:[],
 		notices:[],
-		days:days,
+		month:today.getMonth()+1,
+		lastDay:lastDay,
 		dataEnough() {
 			return this.todays.length === 10 && this.ycl.length === 2 && this.collegeStu.length === 2 && this.graduateStu.length === 2 && this.notices.length === 10;
 		}
@@ -31,7 +33,11 @@ exports = module.exports = function (req, res) {
 			}
 			// 获取了所有已发布的posts
 			for (let i = 0; i < result.length; i++) {
-				if (result[i].showOnHomepage) locals.data.todays.push(result[i]);
+
+				// 本月的“今日新院”新闻
+				if (result[i].showInCalendar && result[i].publishedDate.getMonth() === today.getMonth()) {
+					locals.data.todays.push(result[i]);
+				}
 				else {
 					// notice
 					if (result[i].category === '0' && locals.data.notices.length < 10) {
@@ -52,11 +58,10 @@ exports = module.exports = function (req, res) {
 				}
 				// 数据量已足够
 				if (locals.data.dataEnough()) break;
-			}			
-		});
-		next();
+			}	
+			next();
+		});		
 	});
-	
 	locals.section = 'home';
 	view.render('home');
 };

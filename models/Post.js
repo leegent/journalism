@@ -35,7 +35,6 @@ Post.add({
         required:true
     },
     publishedDate: {label: '发布日期', type: Types.Date, index: true,dependsOn:{state:1},default:Date.now,format:"YYYY-MM-DD"},
-    viewTime: {label: '浏览次数', type: Number, default: 0, noedit: true},
     image: {
         label: '封面图片',
         type: Types.LocalFile,
@@ -45,8 +44,9 @@ Post.add({
             return '<img src=/images/' + file.filename + '>';
         }
     },
+    abstract: {label:'摘要',type:Types.Textarea},
     content: {label: '正文', type: Types.Html, wysiwyg: true, height: 400},
-    showOnHomepage: {label: '显示在今日新院', type: Boolean, default: false}
+    showInCalendar: {label: '显示在今日新院', type: Boolean, default: false}
 });
 // hook, auto set public date
 Post.schema.pre('save',function (next) {
@@ -54,5 +54,5 @@ Post.schema.pre('save',function (next) {
     next();
 });
 
-Post.defaultColumns = 'title, category, state, publishedDate';
+Post.defaultColumns = 'title|40%, category, state, publishedDate, showInCalendar';
 Post.register();
