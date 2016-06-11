@@ -15,7 +15,7 @@ keystone.init({
 	'brand': 'Journalism',
 
 	'less': 'public',
-'static': 'public',
+	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'jade',
@@ -53,7 +53,7 @@ keystone.set('routes', require('./routes'));
 
 keystone.set('nav', {
 	posts:'posts',
-	users: 'users'
+	files:'files'
 });
 
 // Start Keystone to connect to your database and initialise the web server

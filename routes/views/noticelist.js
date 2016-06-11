@@ -2,12 +2,12 @@ var keystone = require('keystone');
 
 exports = module.exports = function (req, res) {
 
-	var view = new keystone.View(req, res);
-	var locals = res.locals;
+  var view = new keystone.View(req, res);
+  var locals = res.locals;
 
-	// locals.section is used to set the currently selected
-	// item in the header navigation.
-	locals.section = 'newslist';
+  // locals.section is used to set the currently selected
+  // item in the header navigation.
+  locals.section = 'noticelist';
   locals.data={
     posts:null
   }
@@ -19,18 +19,17 @@ exports = module.exports = function (req, res) {
       page: req.query.page || 1,
       perPage: 3,
       maxPages: 10
-    }).where('category').in(['1','2','3']).sort('-publishedDate');
+    }).where('category','0').sort('-publishedDate');
 
     q.exec(function (err, results) {
       locals.data.posts = results.results;
       locals.data.pages = results.pages;
       locals.data.currentPage = results.currentPage;
       locals.data.totalPages = results.totalPages;
-      // console.dir(results.results);
       next(err);
     });
   });
 
-	// Render the view
-	view.render('newslist');
+  // Render the view
+  view.render('noticelist');
 };

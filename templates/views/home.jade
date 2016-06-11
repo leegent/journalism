@@ -1,39 +1,42 @@
 extends ../layouts/layout
 
+block css	
+	link(href="/styles/homepage.min.css",rel="stylesheet")
+
 mixin news(id,image,title)
 	div(data-id=id).news-container
 		img(src=image)
-		p.newsTile= title
+		p.newsTile=title
 
 mixin newsSection(type)
 	div.news-section
 		div.post-title.news-section-header
-			if(type==='1')
+			if (type==='1')
 				| 团委
-			else if(type==='2')
+			else if (type==='2')
 				| 学生会
 			else
 				| 研究生会
 		div.news-section-body
-			if(type==='1')
+			if (type==='1')
 				each item in data.ycl
-					+news(item._id,"images/"+item.image.filename,item.title)
-			else if(type==='2')
+					+news(""+item._id,"images/"+item.image.filename,item.title)
+			else if (type==='2')
 				each item in data.collegeStu
-					+news(item._id,"images/"+item.image.filename,item.title)
+					+news(""+item._id,"images/"+item.image.filename,item.title)
 			else
 				each item in data.graduateStu
-					+news(item._id,"images/"+item.image.filename,item.title)
+					+news(""+item._id,"images/"+item.image.filename,item.title)
 
 mixin carousel
 	section.carousel-container
 		div(style='width:#{data.todays.length*86}em').carousel-image-container
 			each item,index in data.todays
-				img(src="images/"+item.image.filename,data-index=index,data-date=item.publishedDate.getDay(),data-title=item.title,data-abstract=item.abstract).carousel-image
+				img(src="images/"+item.image.filename,data-id=""+item._id,data-index=index,data-date=item.publishedDate.getDate(),data-title=item.title,data-abstract=item.abstract).carousel-image
 		div.carousel-text-container
 			div.carousel-text-left
-				div.carousel-title 2012届广电毕业生用专业献礼母校
-				div.carousel-abstract 6月29日上午，随着“爱在复旦”四个字出现在2012届本科生毕业典礼大屏幕上，复旦大学正大体育馆立刻变得安静起来
+				div.carousel-title
+				div.carousel-abstract
 			div.carousel-text-right 今日新院
 		div.calendar
 			div.calendar-arrow-container.calendar-left
@@ -62,7 +65,10 @@ block main
 				each item in data.notices
 					div.notice-title-container
 						div.notice-title-left
-							a(href='notices?id='+item._id) #{item.title}
+							a(href='post?id=' + item._id)= item.title
 						div.notice-title-right
 							span= item._.publishedDate.format('YYYY-MM-DD')
+
+block js
+	script(src="js/homepage.js")
 	

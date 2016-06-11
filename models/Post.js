@@ -8,18 +8,12 @@ var Types = keystone.Field.Types;
 var Post = new keystone.List('Post', {
     // name is displayed in admin UI
     map: {name: 'title'},
-    autokey: {path: 'slug', from: 'title', unique: true}
-    // defaultSort: '-createAt',
+    autokey: {path: 'slug', from: 'title', unique: true},
+    defaultSort: '-publishedDate'
 });
 
 Post.add({
     title: {label:'标题',type: String, required: true},
-    state: {
-        label:'状态',
-        type: Types.Select,
-        options: [{label: '草稿', value: 0}, {label: '已发布', value: 1}],
-        index: true
-    },
     author: {label: '作者', type: String, default: '新闻学院'},
     category: {
         label: '分类',
@@ -34,7 +28,7 @@ Post.add({
         default:0,
         required:true
     },
-    publishedDate: {label: '发布日期', type: Types.Date, index: true,dependsOn:{state:1},default:Date.now,format:"YYYY-MM-DD"},
+    publishedDate: {label: '发布日期', type: Types.Date, index: true,default:Date.now,format:"YYYY-MM-DD"},
     image: {
         label: '封面图片',
         type: Types.LocalFile,
@@ -48,11 +42,12 @@ Post.add({
     content: {label: '正文', type: Types.Html, wysiwyg: true, height: 400},
     showInCalendar: {label: '显示在今日新院', type: Boolean, default: false}
 });
+
 // hook, auto set public date
-Post.schema.pre('save',function (next) {
+/*Post.schema.pre('save',function (next) {
     if(this.state === 1) this.publishedDate = Date.now();
     next();
-});
+});*/
 
 Post.defaultColumns = 'title|40%, category, state, publishedDate, showInCalendar';
 Post.register();

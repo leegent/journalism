@@ -27,13 +27,11 @@ exports = module.exports = function (req, res) {
 	 // Load all posts
 	view.on('init',function (next) {
 		'use strict'
-		keystone.list('Post').model.find({'state': 1}).sort('-publishedDate').exec(function (err, result) {
+		keystone.list('Post').model.find().sort('-publishedDate').exec(function (err, result) {
 			if (err || !result.length) {
 				return next(err);
 			}
-			// 获取了所有已发布的posts
 			for (let i = 0; i < result.length; i++) {
-
 				// 本月的“今日新院”新闻
 				if (result[i].showInCalendar && result[i].publishedDate.getMonth() === today.getMonth()) {
 					locals.data.todays.push(result[i]);

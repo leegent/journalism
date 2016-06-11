@@ -1,15 +1,15 @@
 extends ../layouts/layout
 
 block css
-  link(href="/styles/newslistpage.min.css",rel="stylesheet")
+  link(href="/styles/noticelistpage.min.css",rel="stylesheet")
 
 block main
-  div.newslist-container
+  div.noticelist-container
     each post in data.posts
       p
         a(href='post?id='+post._id)= post.title
-        span.newslist-date= post._.publishedDate.format('YYYY-MM-DD')
-    nav.newslist-nav
+        span.noticelist-date= post._.publishedDate.format('YYYY-MM-DD')
+    nav.noticelist-nav
       ul.pagination
         if (data.currentPage === 1)
           li.disabled
@@ -17,21 +17,20 @@ block main
               span(aria-hidden="true") &laquo;
         else
           li
-            a(href="newslist?page="+(Number(data.currentPage)-1),aria-label="Previous")
+            a(href="noticelist?page="+(Number(data.currentPage)-1),aria-label="Previous")
               span(aria-hidden="true") &laquo;
         each page in data.pages
           if (page === data.currentPage)
             li.active
-              a(href="newslist?page=" + page)= page
+              a(href="noticelist?page=" + page)= page
           else
             li
-              a(href="newslist?page=" + page)= page
+              a(href="noticelist?page=" + page)= page
         if (data.currentPage === data.totalPages)
           li.disabled          
             a(href="#",aria-label="Next")
               span(aria-hidden="true") &raquo;
         else
           li
-            a(href="newslist?page="+(Number(data.currentPage)+1),aria-label="Next")
+            a(href="noticelist?page="+(Number(data.currentPage)+1),aria-label="Next")
               span(aria-hidden="true") &raquo;
-

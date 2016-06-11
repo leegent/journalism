@@ -1,0 +1,16 @@
+extends ../layouts/layout
+
+block css 
+  link(href="/styles/postpage.min.css",rel="stylesheet")
+
+block main
+  div.post-container
+    div.post-title= data.post.title
+    div.post-info 作者:#{data.post.author}&nbsp;&nbsp;&nbsp;&nbsp;发布日期：#{data.post._.publishedDate.format('YYYY-MM-DD')}
+    article.post-content!= data.post.content
+    footer.post-footer
+      if (data.post.category === '0')
+        a(href="noticelist",role="button").btn.btn-default.post-back-list 返回公告列表
+      else
+        a(href="newslist",role="button").btn.btn-default.post-back-list 返回新闻列表
+      a(href="/",role="button").btn.btn-default.post-back-home 返回首页

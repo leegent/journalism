@@ -35,8 +35,9 @@ var routes = {
 exports = module.exports = function (app) {
 	// Views
 	app.get('/', routes.views.home);
-	app.get('/home', routes.views.home);
-	app.get('/newslist', routes.views.newslist);
+  app.get('/newslist', routes.views.newslist);
+	app.get('/noticelist', routes.views.noticelist);
+  app.get('/post',routes.views.post);
 	
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
