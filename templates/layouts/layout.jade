@@ -1,10 +1,10 @@
 doctype html
 html
 	head
-		meta(charset="utf-8")
+		meta(http-equiv="Content-Type",content="text/html",charset="UTF-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(http-equiv="X-UA-Compatible" content="IE=edge")
-		title 新闻学院		
+		title 新闻学院
 		block css
 		
 		block head
@@ -19,9 +19,11 @@ html
 						p 复旦大学新闻学院学生会
 						p 复旦大学新闻学院研究生会
 				div.header-searchbar-container
-					input(type="text" name="s" id="search" placeholder="站内搜索" value="")
-					button.btn.btn-primary
-						i.glyphicon.glyphicon-search
+					div.input-group
+						input(type="text",placeholder="站内搜索")#search-input.form-control
+						span.input-group-btn
+							button(type="button")#search-button.btn.btn-default
+								i.glyphicon.glyphicon-search
 			nav.mynavbar
 				div.mynavbar-nav
 					each link in navLinks
@@ -31,12 +33,12 @@ html
 					
 			footer#footer
 				p.footer-line1 all rights reserved&nbsp;复旦大学新闻学院版权所有&nbsp;由KeystoneJS提供技术支持
-				p.footer-line2 联系方式| 021-65642222
+				p.footer-line2 联系方式 | 021-65642222
 				p.footer-line3
-					a(href="#") 新闻学院官网&nbsp;
+					a(href="http://www.xwxy.fudan.edu.cn/") 新闻学院官网&nbsp;
 					a(href="#") 新闻学院图书馆&nbsp;
 					a(href="#") 信息与传播研究中心&nbsp;
 					a(href="#") 新媒体研究网&nbsp;
 					a(href="#") 复新传媒
-		script(src="js/jquery/jquery-2.1.4.min.js")
+		script(src="js/search.js")
 		block js

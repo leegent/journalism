@@ -1,16 +1,16 @@
 extends ../layouts/layout
 
 block css	
-	link(href="/styles/homepage.min.css",rel="stylesheet")
+	link(href="/styles/home.min.css",rel="stylesheet")
 
 mixin news(id,image,title)
 	div(data-id=id).news-container
 		img(src=image)
-		p.newsTile=title
+		p=title
 
 mixin newsSection(type)
 	div.news-section
-		div.post-title.news-section-header
+		div.news-section-post-title.news-section-header
 			if (type==='1')
 				| 团委
 			else if (type==='2')
@@ -27,6 +27,7 @@ mixin newsSection(type)
 			else
 				each item in data.graduateStu
 					+news(""+item._id,"images/"+item.image.filename,item.title)
+			br
 
 mixin carousel
 	section.carousel-container
@@ -54,14 +55,16 @@ block main
 	+carousel
 	section.posts
 		section.news
-			header.post-header.post-title 新闻
-			main.news-main
+			header.post-header.post-title 
+				a(href="/newslist") 新闻
+			div.news-main
 				+newsSection('1')
 				+newsSection('2')
 				+newsSection('3')
 		section.notices
-			header.post-header.post-title 公告
-			main.notice-main
+			header.post-header.post-title
+				a(href="/noticelist") 公告
+			div.notice-main
 				each item in data.notices
 					div.notice-title-container
 						div.notice-title-left
@@ -70,5 +73,6 @@ block main
 							span= item._.publishedDate.format('YYYY-MM-DD')
 
 block js
+	script(src="js/jquery/jquery-2.1.4.min.js")
 	script(src="js/homepage.js")
 	

@@ -17,8 +17,8 @@ exports = module.exports = function (req, res) {
 
     var q = keystone.list('Post').paginate({
       page: req.query.page || 1,
-      perPage: 3,
-      maxPages: 10
+      perPage: 15,
+      maxPages: 999
     }).where('category').in(['1','2','3']).sort('-publishedDate');
 
     q.exec(function (err, results) {

@@ -20,12 +20,12 @@ var _ = require('underscore');
 exports.initLocals = function (req, res, next) {
 	res.locals.navLinks = [
 		{ label: '首页', key: 'home', href: '/' },
-		{ label: '整体概况', key: 'profile', href: '/' },
-		{ label: '组织架构', key: 'framework', href: '/' },
+		{ label: '整体概况', key: 'overview', href: '/overview' },
+		{ label: '组织架构', key: 'framework', href: '/framework' },
 		{ label: '新闻动态', key: 'newslist', href: '/newslist' },
 		{ label: '通知公告', key: 'noticelist', href: '/noticelist' },
-		{ label: '联系我们', key: 'contactus', href: '/' },
-		{ label: '友情链接', key: 'friendlinks', href: '/' }
+		{ label: '联系我们', key: 'contact', href: '/contact' },
+		{ label: '友情链接', key: 'links', href: '/links' }
 	];
 	res.locals.user = req.user;
 	next();

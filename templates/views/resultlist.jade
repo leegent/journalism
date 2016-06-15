@@ -1,0 +1,16 @@
+extends ../layouts/layout
+
+block css
+  link(href="/styles/noticelist.min.css",rel="stylesheet")
+
+block main
+  header.noticelist-title "#{data.keys}"的搜索结果
+  div.noticelist-container
+    p 共找到#{data.posts.length}条符合条件的标题
+    if (typeof data.posts === 'undefined' || data.posts.length === 0)
+      p 搜索结果为空，请尝试更换查询关键字
+    else
+      each post in data.posts
+        p
+          a(href='post?id='+post._id)= post.title
+          span.noticelist-date= post._.publishedDate.format('YYYY-MM-DD')

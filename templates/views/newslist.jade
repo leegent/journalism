@@ -1,9 +1,10 @@
 extends ../layouts/layout
 
 block css
-  link(href="/styles/newslistpage.min.css",rel="stylesheet")
+  link(href="/styles/newslist.min.css",rel="stylesheet")
 
 block main
+  header.newslist-title 新闻动态
   div.newslist-container
     each post in data.posts
       p

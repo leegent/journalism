@@ -1,3 +1,12 @@
+@import "../bootstrap/variables.less";
+@import "../bootstrap/mixins.less";
+@import "../bootstrap/buttons.less";
+@import "../bootstrap/button-groups.less";
+@import "../bootstrap/input-groups.less";
+@import "../bootstrap/forms.less";
+@import "../bootstrap/glyphicons.less";
+@import "./mynavbar.less";
+
 @nav-bgcolor:#8f1908;
 @font-color:#FCFCDF;
 .unselectable{
@@ -12,23 +21,21 @@ html,body{
 }
 
 body{
-  font-size:14px;
   background-color: lightgray;
 }
 
-@import "./mynavbar.less";
 
 #container{
-  width: 88em;
+  width: 77em;
   margin:0 auto;
-  padding:1em;
+  padding:.875em;
   background-color: #fff;
 }
 
 #header{
   position: relative;
   width: 100%;
-  height: 12em;
+  height: 10.5em;
   margin: 0;
   background-color: @nav-bgcolor;
 }
@@ -38,17 +45,17 @@ body{
   display: inline-block;
   float:left;
   width: @w;
-  height: 12em;
+  height: 10.5em;
 }
 
 .header-tuanhui{
-  .header-mixin(12em);
-  padding:1em;
+  .header-mixin(10.5em);
+  padding:.875em;
 }
 
 .header-right{
-  .header-mixin(70em);
-  padding-top: 1em;
+  .header-mixin(61.25em);
+  padding-top: .875em;
 }
 
 .header-units{
@@ -57,8 +64,8 @@ body{
   font-family: "宋体";
   .unselectable;
   p{
-    margin: 0 0 .5em 0;
-    font-size:2em;
+    margin: 0 0 .4em 0;
+    font-size:1.75em;
     cursor: default;
     &:last-child{
       margin-bottom: 0;
@@ -70,30 +77,34 @@ body{
   position: absolute;
   display: inline-block;
   color: #FFF;
-  bottom: 1em;
-  right: 2em;
-  > input{
-    color: #000;
-  }
-  > .btn{
-    padding: .3em .9em;
-    font-size: .9em;
+  bottom: .875em;
+  right: 1.75em;
+  width: 20em;
+}
+
+#search-input{
+  float: right;
+  height: 20px;
+  width: 7.75em;
+  &:focus{
+    width: 15.5em;
+    transition:.5s ease;
   }
 }
 
 #footer{
   margin: 0;
-  padding:1em 0 .1em 0;
+  padding:.875em 0 .1em 0;
   background-color: @nav-bgcolor;
   text-align: center;
   color:@font-color;
-  font-size: 1.2em;
+  font-size: 1em;
   font-family: "黑体";
   p{
-    margin: 0 0 .5em 0;
+    margin: 0 0 .4em 0;
   }
   a{
-    margin-left: 3em;
+    margin-left: 2.625em;
     text-decoration: none;
     color: @font-color;
     &:hover{

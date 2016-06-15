@@ -1,72 +1,88 @@
+@import "site/layout.less";
+
 @news-section-bgcolor:#faf7e6;
 @news-section-titlecolor:#a6937c;
 
-@import "./carousel.less";
-
 .posts{
   background-color: @news-section-bgcolor;
-  min-height: 70em;
+  min-height: 57em;
 }
 .post-header{
   margin: 0;
-  padding-top: .3em;
+  padding-top: .2625em;
   text-align: center;  
-  border-bottom: .3em solid rgb(236,235,207);
+  border-bottom: .2625em solid rgb(236,235,207);
 }
 
-.post-title{
+.post-title > a{
+  text-decoration: none;
   color:@news-section-titlecolor;
-  font-size: 2em;
+  font-size: 1.925em;
   font-weight: 800;
   font-family: "宋体";
 }
 
+@import "site/carousel.less";
+
 .news{
   box-sizing: border-box;
   float:left;
-  width: 70%;
+  width: 67%;
 }
 .news-main{
-  padding: .3em 1.2em 0 1.2em;
+  padding: .2625em 1.05em 0 1.05em;
 }
 /* mixin图片新闻 */
 .news-container{
   float: left;
-  width: 20em;
-  height: 15.86em;
-  margin-left: 3em;
+  width: 17.5em;
+  height: 13.8775em;
+  margin-left: 2.625em;
   cursor:pointer;
+  font-family: "黑体";
   img{
     width: 100%;
     height: 77.5%;
+  }
+  p{
+    margin:0;
+    font-size: 1.1em;
   }
 }
 
 /* mixin新闻版块 */
 .news-section-header{
-  padding:.2em;
+  padding:.175em;
+}
+.news-section-post-title{
+  color:@news-section-titlecolor;
+  font-size: 1.6em;
+  font-weight: bolder;
+  font-family: "宋体";
 }
 .news-section-body{
-  padding:.2em .2em .2em 6em;
+  padding:0 .175em 0 6em;
   /* clear float */
-  overflow: auto;
+  br{
+    clear: both;
+  }
 }
-
 /* mixin通知板块 */
 .notices{
   box-sizing: border-box;
   float:left;
-  width: 30%;
+  width: 33%;
 }
 .notice-main{
-  padding:3.5em .8em 0 .8em;
+  padding: 1.9em .7em 0 .7em;
 }
 .notice-title-container{
-  padding:.2em .2em;
+  position: relative;
+  padding:.5em .175em;
 }
 .notice-title-left{
   display: inline-block;
-  width: 70%;
+  width: 69%;
   a{
     text-decoration: none;
     color: #000;
@@ -75,9 +91,8 @@
   }
 }
 .notice-title-right{
-  display: inline-block;
   width: 28%;
-  span{
-    float:right;
-  }
+  position: absolute;
+  bottom:.5em;
+  right: 0;
 }

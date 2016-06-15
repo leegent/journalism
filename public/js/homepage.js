@@ -2,6 +2,7 @@
   /**
    * carousel operating script
    */
+  var imageWidth = 77;
   var days = $('.calendar-day'),
       images = $('.carousel-image'),
       imageContainer = $('.carousel-image-container'),
@@ -29,7 +30,7 @@
   });
 
   function changeCurrentDay() {
-    imageContainer.animate({left:'-'+(86*carouselPos)+'em'},'fast');
+    imageContainer.animate({left:'-'+(imageWidth*carouselPos)+'em'},'fast');
     days.removeClass('calendar-day-current');
     info[carouselPos].dayEl.addClass('calendar-day-current');
     title.attr('data-id',info[carouselPos]._id);
@@ -77,7 +78,7 @@
     carouselPos++;    
     days.removeClass('calendar-day-current');
     if(carouselPos < info.length){
-      imageContainer.animate({left:'-'+86*carouselPos+'em'},'slow');
+      imageContainer.animate({left:'-'+imageWidth*carouselPos+'em'},'slow');
     }
     else{
       carouselPos=0;
@@ -90,7 +91,7 @@
   },4000);
   // click and jump to the news
   function go(){    
-    window.location.href = 'post?id='+this.getAttribute('data-id').substr();
+    window.location.href = 'post?id='+this.getAttribute('data-id');
   }
   $('.news-container').click(go);
   // click image or title
