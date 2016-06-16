@@ -8,7 +8,7 @@ block main
   div.noticelist-container
     p 共找到#{data.posts.length}条符合条件的标题
     if (typeof data.posts === 'undefined' || data.posts.length === 0)
-      p 搜索结果为空，请尝试更换查询关键字
+      p 搜索结果为空，请尝试更换查询关键字（只接受汉字、英文字母和数字）
     else
       each post in data.posts
         p
