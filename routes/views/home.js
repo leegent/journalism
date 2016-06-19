@@ -6,11 +6,11 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 	// days of current month
 	var today = new Date();
-	var lastDay = (()=>{
-		var y = today.getFullYear();
+	function getLastDay(day) {
+		var y = day.getFullYear();
 		var FebLastDay = ((y % 4 === 0 && y % 100 != 0) || y % 400 === 0)?29:28;
-		return [31,FebLastDay,31,30,31,30,31,31,30,31,30,31][today.getMonth()];	
-	})();	
+		return [31,FebLastDay,31,30,31,30,31,31,30,31,30,31][day.getMonth()];	
+	}	
 	// 首页需要从数据库获取的数据有：所有本月的“今日新院”，三类新闻的分别最新2个，以及最新的10条公告
 	locals.data={
 		todays:[],
@@ -19,7 +19,7 @@ exports = module.exports = function (req, res) {
 		graduateStu:[],
 		notices:[],
 		month:today.getMonth()+1,
-		lastDay:lastDay,
+		lastDay:getLastDay(today),
 		dataEnough() {
 			return this.todays.length === 10 && this.ycl.length === 2 && this.collegeStu.length === 2 && this.graduateStu.length === 2 && this.notices.length === 10;
 		}
@@ -56,7 +56,19 @@ exports = module.exports = function (req, res) {
 				}
 				// 数据量已足够
 				if (locals.data.dataEnough()) break;
-			}	
+			}
+			// if there's no todays of current month yet, use todays of last month instead
+			if(locals.data.todays.length === 0){
+				locals.data.month = locals.data.month === 1 ? 12 : locals.data.month - 1;
+				locals.data.lastDay = getLastDay(
+					new Date(locals.data.month === 12?today.getFullYear()-1:today.getFullYear(), locals.data.month-1, 1)
+					);
+				for (let i = 0; i < result.length; i++) {
+					if (result[i].showInCalendar && result[i].publishedDate.getMonth() === locals.data.month - 1) {
+						locals.data.todays.push(result[i]);
+					}
+				}
+			}
 			next();
 		});		
 	});
