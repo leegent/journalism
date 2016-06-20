@@ -5,7 +5,7 @@ block css
 
 mixin news(id,image,title)
 	div(data-id=id).news-container
-		img(src=image)
+		img(src=image,title=title)
 		p=title
 
 mixin newsSection(type)
@@ -33,7 +33,7 @@ mixin carousel
 	section.carousel-container
 		div(style='width:#{data.todays.length*86}em').carousel-image-container
 			each item,index in data.todays
-				img(src="images/"+item.image.filename,data-id=""+item._id,data-index=index,data-date=item.publishedDate.getDate(),data-title=item.title,data-abstract=item.abstract).carousel-image
+				img(src="images/"+item.image.filename,alt=item.title,title=item.title,data-id=""+item._id,data-index=index,data-date=item.publishedDate.getDate(),data-title=item.title,data-abstract=item.abstract).carousel-image
 		div.carousel-text-container
 			div.carousel-text-left
 				div.carousel-title
@@ -57,19 +57,19 @@ block main
 	section.posts
 		section.news
 			header.post-header.post-title 
-				a(href="/newslist") 新闻
+				a(href="/newslist",title="更多新闻") 新闻
 			div.news-main
 				+newsSection('1')
 				+newsSection('2')
 				+newsSection('3')
 		section.notices
 			header.post-header.post-title
-				a(href="/noticelist") 公告
+				a(href="/noticelist",title="更多公告") 公告
 			div.notice-main
 				each item in data.notices
 					div.notice-title-container
 						div.notice-title-left
-							a(href='post?id=' + item._id)= item.title
+							a(href='post?id=' + item._id,title=item.title)= item.title
 						div.notice-title-right
 							span= item._.publishedDate.format('YYYY-MM-DD')
 
