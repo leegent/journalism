@@ -25,8 +25,7 @@ html
 				div.mynavbar-nav
 					each link in navLinks
 						a(class=(section == link.key ? 'active' : null),href=link.href)= link.label
-			main#main-container
-				block main
+			block main
 					
 			footer#footer
 				p.footer-line1 all rights reserved&nbsp;复旦大学新闻学院版权所有&nbsp;由KeystoneJS提供技术支持
